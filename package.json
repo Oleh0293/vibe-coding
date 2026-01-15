@@ -1,0 +1,28 @@
+{
+  "name": "vive-code-project",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "npm run dev --workspace=backend",
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "build": "npm run build --workspaces",
+    "test": "npm run test:backend && npm run test:frontend",
+    "test:backend": "npm run test --workspace=backend",
+    "test:frontend": "npm run test --workspace=frontend",
+    "test:e2e": "npm run test --workspace=e2e",
+    "test:all": "npm run test && npm run test:e2e",
+    "test:watch": "npm run test:watch --workspace=backend",
+    "setup": "npm install && npm run prisma:generate --workspace=backend && npm run prisma:push --workspace=backend && npm run playwright:install --workspace=e2e",
+    "prisma:push": "npm run prisma:push --workspace=backend",
+    "playwright:install": "npm run playwright:install --workspace=e2e"
+  },
+  "workspaces": [
+    "backend",
+    "frontend",
+    "e2e"
+  ],
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
